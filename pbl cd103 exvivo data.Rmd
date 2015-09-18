@@ -1,0 +1,51 @@
+---
+title: "Ex-vivo PBL CD103 Data"
+author: "Hoda Sayegh"
+date: "September 18, 2015"
+output:
+  html_document:
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 9
+    highight: tango
+    number_sections: yes
+    self_contained: no
+    theme: cosmo
+    toc: yes
+    pdf_document: yes
+    toc: yes
+  word_document: default
+---
+# importing/grooming data set
+
+```{r}
+library("dplyr")
+
+cd103_data <- read.csv("Data/cd103_pbls_exvivo_data.csv", header = TRUE)
+```
+
+# ggplot 2
+
+```{r}
+library("ggplot2")
+```
+
+# Total ab% in CD103+ PBLs 
+
+```{r}
+x1 = factor()
+plot1 <- ggplot(data = cd103_data, mapping = aes(x = Disease_State,
+                                           y = CD103PosabPos)) + scale_x_discrete(limits=c("Control", "Active", "Gluten Challenge")) + labs(title = "CD103+ ab frequencies", x = "", y = "% of CD3pos ab cells") + geom_boxplot(notch = TRUE, notchwidth = .3, aes(color = Disease_State))
+
+plot1
+```
+
+# Total gd% in CD103+ PBLs 
+
+```{r}
+x1 = factor()
+plot1 <- ggplot(data = cd103_data, mapping = aes(x = Disease_State,
+                                           y = CD103PosgdPos)) + scale_x_discrete(limits=c("Control", "Active", "Gluten Challenge")) + labs(title = "CD103+ gd frequencies", x = "", y = "% of CD3pos gd cells") + geom_boxplot(notch = TRUE, notchwidth = .3, aes(color = Disease_State))
+
+plot1
+```
